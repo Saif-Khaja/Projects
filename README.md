@@ -1,2 +1,2 @@
 # Projects
-Contains a diverse set of projects including scraping scripts, data cleaning, wrangling and forecasting scripts along with API's that I have written.
+Contains a diverse set of projects including scraping scripts, data cleaning, wrangling and forecasting scripts along with API's that I have written. Scraping projects are done by either using the [Rvest]([url](https://cran.r-project.org/web/packages/rvest/rvest.pdf)) library if it a static website else [Rselenium]([url](https://towardsdatascience.com/how-to-use-selenium-to-web-scrape-with-example-80f9b23a843a)) is used to interact with HTML code on the website.
