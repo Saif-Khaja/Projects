@@ -5,7 +5,7 @@ The data I get is either through a public API or scraped from various sites. Aft
 
 
 ### API
-I write a function to interact with the public API using the GET function from `httr` and then parse the data from JSON format to a dataframe using functions from `jsonlite`. After getting the data I feed the data into my `SQL` database to quickly retrieve the data instead of running the API request again. The USDA API, which I wrote can retrieve almost 3 million rows of data across 64 commodities with indicators such as production, consumption, inventory, import, export, and etc on a global and regional level.
+I write a function to interact with the public API using the GET function from `httr` and then parse the data from JSON format to a dataframe using functions from `jsonlite`. After getting the data I feed the data into my `SQL` database to quickly retrieve the data instead of running the API request again.
 
 ### Scraping
 Scraping projects are done by either using the `rvest` library if it a static website else `Rselenium` is used to interact with HTML code on the website. 
