@@ -1,7 +1,7 @@
 # Wed Nov 12 19:27:25 2022 ------------------------------
 library(tidyverse);library(rvest);library(broom)
 
-# Run the 'Webscraping IMDB and Boxoffice Worldwide scrips before you run this or else it wont work
+# Run the 'Webscraping IMDB' and 'Boxoffice Worldwide' scripts before you run this or else it wont work
 
 colnames(df)[2] <- "Movie"
 
@@ -13,6 +13,7 @@ data <- data %>%
 data$Genre <- as_factor(data$Genre)
 
 # Multiple Linear Regression Model
+## Movie Runtime, Votes, Rating, and Genres as predictors for Worldwide boxoffice Revenue 
 
 lm <- lm(Worldwide~., data = data)
 summary(lm)
@@ -26,7 +27,7 @@ glance(lm)
 tlm[,2:5] <- map_df(tlm[,2:5], round,4)
 
 
-# Beta estimates for significant predictors
+# Graph of significant beta estimates at 5% level
 
 tlm %>% 
   filter(p.value<0.05,
