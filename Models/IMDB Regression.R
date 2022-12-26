@@ -14,6 +14,7 @@ data$Genre <- as_factor(data$Genre)
 
 # Multiple Linear Regression Model
 ## Movie Runtime, Votes, Rating, and Genres as predictors for Worldwide boxoffice Revenue 
+## Factors (categorical) variables such as Genre are based on the base level genre, which is 'Action, Adventure, Sci-Fi'
 
 lm <- lm(Worldwide~., data = data)
 summary(lm)
@@ -25,7 +26,6 @@ augment(lm)
 glance(lm)
 
 tlm[,2:5] <- map_df(tlm[,2:5], round,4)
-
 
 # Graph of significant beta estimates at 5% level
 
