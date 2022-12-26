@@ -56,6 +56,7 @@ for (page_result in seq(from = 1, to = 1591, by = 50)) {
     
     rm(list=setdiff(ls(), "IMDB_Data"))
     
+    # Data cleaning/wrangling
     IMDB_Data <- IMDB_Data %>% 
       separate(col = Cast, into = c("Director", "Stars"), sep = "[|]") 
     
@@ -69,6 +70,7 @@ for (page_result in seq(from = 1, to = 1591, by = 50)) {
     IMDB_Data$Director <- str_remove_all(IMDB_Data$Director, pattern = "Directors:")
     IMDB_Data$Stars <- str_remove_all(IMDB_Data$Stars, pattern = "Stars:")
 
+    # Recoding columns from characters to numeric
     IMDB_Data[, c(2,3,4,6)] <- map_df(IMDB_Data[, c(2,3,4,6)], as.numeric)
   }
 }
