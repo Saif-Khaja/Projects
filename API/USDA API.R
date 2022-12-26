@@ -9,7 +9,7 @@ rm(list=ls());dev.off()
 Get_Commodity_Codes <- function(Commodity_Name, Commodity_Code){
   
   request <- GET("https://apps.fas.usda.gov/PSDOnlineDataServices/api/LookupData/GetCommodities",
-                 add_headers(API_KEY = "F36AA4DD-4ED2-4814-B943-E8717FCA974A"))
+                 add_headers(API_KEY = askpass::askpass()))
   
   content(request, as = "text") %>% 
     fromJSON() %>% 
@@ -31,7 +31,7 @@ USDA_API_Country <- function(Commodity_Code, StartYear, EndYear){
                 str_trim(left_join(x=data.frame(CommodityCode=Commodity_Code[i]), y=Commodity_code, by="CommodityCode")[,2], side = "both"), 
                 paste0("(",Commodity_Code[i],")")))
     
-    for (Year in ifelse(missing(StartYear), 1960, StartYear):ifelse(missing(EndYear), format(Sys.Date(), "%Y"), EndYear)){ #Fix så man ikke behøver specificere start/end year
+    for (Year in ifelse(missing(StartYear), 1960, StartYear):ifelse(missing(EndYear), format(Sys.Date(), "%Y"), EndYear)){ #Fix sÃ¥ man ikke behÃ¸ver specificere start/end year
       
       if(i==1 && Year==StartYear){
         
@@ -49,9 +49,9 @@ USDA_API_Country <- function(Commodity_Code, StartYear, EndYear){
       
       
       if (request$status_code==404){
-        #Hvis "request" henter en 404 kode, altså en råvare hvor der ikke er data for det år, så
-        #skip iteration og gå til næste år hvor der er data.  
-        #Det er kun sugar hvor vi ikke får 2023 data pga. denne her løsning.
+        #Hvis "request" henter en 404 kode, altsÃ¥ en rÃ¥vare hvor der ikke er data for det Ã¥r, sÃ¥
+        #skip iteration og gÃ¥ til nÃ¦ste Ã¥r hvor der er data.  
+        #Det er kun sugar hvor vi ikke fÃ¥r 2023 data pga. denne her lÃ¸sning.
         next
 
       }
@@ -106,8 +106,8 @@ USDA_API_World <- function(Commodity_Code, StartYear, EndYear){
         add_headers(API_KEY = "F36AA4DD-4ED2-4814-B943-E8717FCA974A"))}, silent = TRUE)
       
       if (request$status_code==404){
-        #Hvis "request" henter en 404 kode, altså en råvare hvor der ikke er data for det år, så
-        #skip iteration og gå til næste år/råvare hvor der er data.  
+        #Hvis "request" henter en 404 kode, altsÃ¥ en rÃ¥vare hvor der ikke er data for det Ã¥r, sÃ¥
+        #skip iteration og gÃ¥ til nÃ¦ste Ã¥r/rÃ¥vare hvor der er data.  
         next
       }
       
