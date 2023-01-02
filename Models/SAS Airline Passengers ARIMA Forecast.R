@@ -65,11 +65,11 @@ data %>%
   labs(x=NULL, y=NULL) +
   scale_x_continuous(n.breaks = 12)
 
-plotly::ggplotly(ggplot(data, aes(as.numeric(Month), value, color=as.factor(Year))) +
+ggplotly(ggplot(data, aes(as.numeric(Month), value, color=as.factor(Year))) +
   geom_line() +
   scale_y_continuous(labels = scales::comma_format()) +
   labs(x=NULL, y=NULL, color="Year") +
-  scale_y_continuous(n.breaks = 12), dynamicTicks = T, )
+  scale_y_continuous(n.breaks = 12), dynamicTicks = T)
 
 #######################################
 ### ARIMA FORECASTING OF PASSENGERS ###
