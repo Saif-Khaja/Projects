@@ -45,7 +45,7 @@ USDA_API_Country <- function(Commodity_Code, StartYear, EndYear){
       request <- try({GET("https://apps.fas.usda.gov/PSDOnlineDataServices/api/CommodityData/GetCommodityDataByYear?", query = list(
         CommodityCode = Commodity_Code[i],           
         MarketYear = Year), 
-        add_headers(API_KEY = "F36AA4DD-4ED2-4814-B943-E8717FCA974A"))}, silent = TRUE)
+        add_headers(API_KEY = askpass::askpass()))}, silent = TRUE)
       
       
       if (request$status_code==404){
@@ -103,7 +103,7 @@ USDA_API_World <- function(Commodity_Code, StartYear, EndYear){
       request <- try({GET("https://apps.fas.usda.gov/PSDOnlineDataServices/api/CommodityData/GetWorldCommodityDataByYear?", query = list(
         CommodityCode = Commodity_Code[i],           
         MarketYear = Year),
-        add_headers(API_KEY = "F36AA4DD-4ED2-4814-B943-E8717FCA974A"))}, silent = TRUE)
+        add_headers(API_KEY = askpass::askpass()))}, silent = TRUE)
       
       if (request$status_code==404){
         #Hvis "request" henter en 404 kode, altså en råvare hvor der ikke er data for det år, så
